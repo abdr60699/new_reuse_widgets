@@ -19,15 +19,6 @@ subprojects {
 }
 subprojects {
     project.evaluationDependsOn(":app")
-    afterEvaluate { project ->
-        if (project.hasProperty('android')) {
-            project.android {
-                if (compileSdk == null) {
-                    compileSdk = 36
-                }
-            }
-        }
-    }
 }
 
 tasks.register("clean", Delete) {
