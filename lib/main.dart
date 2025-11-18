@@ -563,10 +563,10 @@ class EffectWidgetsDemo extends StatelessWidget {
                   ),
                 ),
                 Center(
-                  child: GlassMorphism(
+                  child: ReusableGlassMorphism(
                     blur: 10,
-                    opacity: 0.2,
-                    borderRadius: 20,
+                    tint: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(20),
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       child: const Text(
@@ -586,7 +586,7 @@ class EffectWidgetsDemo extends StatelessWidget {
         ),
         _buildDemoSection(
           title: 'GradientContainer',
-          child: GradientContainer(
+          child: ReusableGradientContainer(
             gradient: const LinearGradient(
               colors: [Colors.orange, Colors.red],
             ),
@@ -600,7 +600,7 @@ class EffectWidgetsDemo extends StatelessWidget {
         _buildDemoSection(
           title: 'NeuMorphism',
           child: Center(
-            child: NeuMorphism(
+            child: ReusableNeuMorphism(
               child: const SizedBox(
                 width: 100,
                 height: 100,
