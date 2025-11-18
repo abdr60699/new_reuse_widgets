@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'sharedwidget/cards/reusable_info_card.dart';
+import 'sharedwidget/cards/reusable_stat_card.dart';
+import 'sharedwidget/feedback/reusable_empty_state.dart';
+import 'sharedwidget/feedback/reusable_error_view.dart';
+import 'sharedwidget/feedback/reusable_progress_indicator.dart';
 import 'sharedwidget/shared_widgets.dart';
 
 void main() {
@@ -139,7 +144,7 @@ class BasicWidgetsDemo extends StatelessWidget {
       children: [
         _buildDemoSection(
           title: 'ReusableBadge',
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ReusableBadge(
@@ -160,7 +165,7 @@ class BasicWidgetsDemo extends StatelessWidget {
         ),
         _buildDemoSection(
           title: 'ReusableAvatar',
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ReusableAvatar(
@@ -186,7 +191,7 @@ class BasicWidgetsDemo extends StatelessWidget {
         ),
         _buildDemoSection(
           title: 'ReusableDivider',
-          child: Column(
+          child: const Column(
             children: [
               Text('Section 1'),
               ReusableDivider(thickness: 2, color: Colors.grey),
@@ -210,13 +215,13 @@ class BasicWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.blue,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -241,8 +246,8 @@ class ButtonWidgetsDemo extends StatelessWidget {
                 label: 'Primary Button',
                 onPressed: () {},
               ),
-              SizedBox(height: 8),
-              ReusableElevatedButton(
+              const SizedBox(height: 8),
+              const ReusableElevatedButton(
                 label: 'Disabled Button',
                 enabled: false,
               ),
@@ -289,13 +294,13 @@ class ButtonWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.green,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -323,7 +328,7 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo> {
       children: [
         _buildDemoSection(
           title: 'ReusableTextFormField',
-          child: ReusableTextFormField(
+          child: const ReusableTextFormField(
             label: 'Email Address',
             hintText: 'Enter your email',
             prefixIcon: Icon(Icons.email),
@@ -334,7 +339,7 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo> {
           child: ReuabelDropdown<String>(
             labelText: 'Select Country',
             initialValue: selectedValue,
-            items: ['USA', 'Canada', 'UK', 'Australia'],
+            items: const ['USA', 'Canada', 'UK', 'Australia'],
             onChanged: (value) => setState(() => selectedValue = value),
           ),
         ),
@@ -370,13 +375,13 @@ class _FormWidgetsDemoState extends State<FormWidgetsDemo> {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.cyan,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -395,7 +400,7 @@ class CardWidgetsDemo extends StatelessWidget {
       children: [
         _buildDemoSection(
           title: 'ReusableInfoCard',
-          child: ReusableInfoCard(
+          child: const ReusableInfoCard(
             title: 'Information',
             subtitle: 'This is an informational card',
             leading: Icon(Icons.info, color: Colors.blue, size: 40),
@@ -403,7 +408,7 @@ class CardWidgetsDemo extends StatelessWidget {
         ),
         _buildDemoSection(
           title: 'ReusableStatCard',
-          child: Row(
+          child: const Row(
             children: [
               Expanded(
                 child: ReusableStatCard(
@@ -425,7 +430,7 @@ class CardWidgetsDemo extends StatelessWidget {
         ),
         _buildDemoSection(
           title: 'ReusableProgressCard',
-          child: ReusableProgressCard(
+          child: const ReusableProgressCard(
             title: 'Project Progress',
             progress: 0.65,
             subtitle: '65% Complete',
@@ -445,13 +450,13 @@ class CardWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.orange,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -479,11 +484,11 @@ class DialogWidgetsDemo extends StatelessWidget {
               );
               if (result == true && context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Confirmed!')),
+                  const SnackBar(content: Text('Confirmed!')),
                 );
               }
             },
-            child: Text('Show Confirmation Dialog'),
+            child: const Text('Show Confirmation Dialog'),
           ),
         ),
         _buildDemoSection(
@@ -493,18 +498,18 @@ class DialogWidgetsDemo extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text('Custom Dialog'),
-                  content: Text('This is a custom dialog example'),
+                  title: const Text('Custom Dialog'),
+                  content: const Text('This is a custom dialog example'),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text('Close'),
+                      child: const Text('Close'),
                     ),
                   ],
                 ),
               );
             },
-            child: Text('Show Custom Dialog'),
+            child: const Text('Show Custom Dialog'),
           ),
         ),
       ],
@@ -521,13 +526,13 @@ class DialogWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.indigo,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -551,7 +556,7 @@ class EffectWidgetsDemo extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Colors.purple, Colors.blue],
                     ),
@@ -563,8 +568,8 @@ class EffectWidgetsDemo extends StatelessWidget {
                     opacity: 0.2,
                     borderRadius: 20,
                     child: Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text(
+                      padding: const EdgeInsets.all(20),
+                      child: const Text(
                         'Glass Effect',
                         style: TextStyle(
                           color: Colors.white,
@@ -582,11 +587,11 @@ class EffectWidgetsDemo extends StatelessWidget {
         _buildDemoSection(
           title: 'GradientContainer',
           child: GradientContainer(
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [Colors.orange, Colors.red],
             ),
-            padding: EdgeInsets.all(20),
-            child: Text(
+            padding: const EdgeInsets.all(20),
+            child: const Text(
               'Gradient Background',
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
@@ -596,7 +601,7 @@ class EffectWidgetsDemo extends StatelessWidget {
           title: 'NeuMorphism',
           child: Center(
             child: NeuMorphism(
-              child: Container(
+              child: const SizedBox(
                 width: 100,
                 height: 100,
                 child: Center(child: Text('Neumorphic')),
@@ -618,13 +623,13 @@ class EffectWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.pink,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -643,11 +648,12 @@ class FeedbackWidgetsDemo extends StatelessWidget {
       children: [
         _buildDemoSection(
           title: 'ReusableProgressIndicator',
-          child: Column(
+          child: const Column(
             children: [
               ReusableProgressIndicator(circular: true, size: 50),
               SizedBox(height: 16),
-              ReusableProgressIndicator(circular: true, size: 50, color: Colors.green),
+              ReusableProgressIndicator(
+                  circular: true, size: 50, color: Colors.green),
               SizedBox(height: 16),
               ReusableProgressIndicator(value: 0.7, height: 10),
             ],
@@ -655,7 +661,7 @@ class FeedbackWidgetsDemo extends StatelessWidget {
         ),
         _buildDemoSection(
           title: 'ReusableEmptyState',
-          child: ReusableEmptyState(
+          child: const ReusableEmptyState(
             title: 'No items found',
             subtitle: 'Try adding some items',
             icon: Icons.inbox,
@@ -683,13 +689,13 @@ class FeedbackWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.amber,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -722,21 +728,23 @@ class LayoutWidgetsDemo extends StatelessWidget {
           child: ReusableExpansionPanelList(
             items: [
               ReusableExpansionPanelItem(
-                header: Padding(
+                header: const Padding(
                   padding: EdgeInsets.all(12),
-                  child: Text('Panel 1', style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text('Panel 1',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
-                body: Padding(
+                body: const Padding(
                   padding: EdgeInsets.all(12),
                   child: Text('Content of panel 1'),
                 ),
               ),
               ReusableExpansionPanelItem(
-                header: Padding(
+                header: const Padding(
                   padding: EdgeInsets.all(12),
-                  child: Text('Panel 2', style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text('Panel 2',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
-                body: Padding(
+                body: const Padding(
                   padding: EdgeInsets.all(12),
                   child: Text('Content of panel 2'),
                 ),
@@ -758,13 +766,13 @@ class LayoutWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.deepPurple,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -783,7 +791,7 @@ class MediaWidgetsDemo extends StatelessWidget {
       children: [
         _buildDemoSection(
           title: 'ReusableImage.network',
-          child: ReusableImage.network(
+          child: const ReusableImage.network(
             'https://picsum.photos/300/200',
             width: double.infinity,
             height: 200,
@@ -792,13 +800,14 @@ class MediaWidgetsDemo extends StatelessWidget {
         ),
         _buildDemoSection(
           title: 'ReusableAudioPlayer',
-          child: ReusableAudioPlayer(
-            url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+          child: const ReusableAudioPlayer(
+            url:
+                'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
           ),
         ),
         _buildDemoSection(
           title: 'ReusableQRGenerator',
-          child: Center(
+          child: const Center(
             child: ReusableQRGenerator(
               data: 'https://flutter.dev',
               size: 200,
@@ -819,13 +828,13 @@ class MediaWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.deepOrange,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
@@ -849,12 +858,12 @@ class NavigationWidgetsDemo extends StatelessWidget {
             color: Colors.blue,
             child: ReusableAppBar(
               titleText: 'App Bar Demo',
-              leading: Icon(Icons.menu, color: Colors.white),
+              leading: const Icon(Icons.menu, color: Colors.white),
               actions: [
-                Icon(Icons.search, color: Colors.white),
-                SizedBox(width: 16),
-                Icon(Icons.more_vert, color: Colors.white),
-                SizedBox(width: 8),
+                const Icon(Icons.search, color: Colors.white),
+                const SizedBox(width: 16),
+                const Icon(Icons.more_vert, color: Colors.white),
+                const SizedBox(width: 8),
               ],
             ),
           ),
@@ -885,13 +894,13 @@ class NavigationWidgetsDemo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.lightBlue,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             child,
           ],
         ),
