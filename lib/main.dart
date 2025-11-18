@@ -397,8 +397,8 @@ class CardWidgetsDemo extends StatelessWidget {
           title: 'ReusableInfoCard',
           child: ReusableInfoCard(
             title: 'Information',
-            description: 'This is an informational card',
-            icon: Icons.info,
+            subtitle: 'This is an informational card',
+            leading: Icon(Icons.info, color: Colors.blue, size: 40),
           ),
         ),
         _buildDemoSection(
@@ -410,7 +410,6 @@ class CardWidgetsDemo extends StatelessWidget {
                   title: 'Users',
                   value: '1,234',
                   icon: Icons.people,
-                  color: Colors.blue,
                 ),
               ),
               SizedBox(width: 8),
@@ -419,7 +418,6 @@ class CardWidgetsDemo extends StatelessWidget {
                   title: 'Sales',
                   value: '\$45K',
                   icon: Icons.shopping_bag,
-                  color: Colors.green,
                 ),
               ),
             ],
@@ -471,45 +469,42 @@ class DialogWidgetsDemo extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       children: [
         _buildDemoSection(
-          title: 'ReusableAlertDialog',
+          title: 'ReusableConfirmationDialog',
+          child: ElevatedButton(
+            onPressed: () async {
+              final result = await ReusableConfirmationDialog.showConfirm(
+                context: context,
+                title: 'Confirm Action',
+                message: 'Are you sure you want to proceed?',
+              );
+              if (result == true && context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Confirmed!')),
+                );
+              }
+            },
+            child: Text('Show Confirmation Dialog'),
+          ),
+        ),
+        _buildDemoSection(
+          title: 'Custom Dialog',
           child: ElevatedButton(
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (context) => ReusableAlertDialog(
-                  title: 'Alert',
-                  content: 'This is an alert dialog',
+                builder: (context) => AlertDialog(
+                  title: Text('Custom Dialog'),
+                  content: Text('This is a custom dialog example'),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text('OK'),
+                      child: Text('Close'),
                     ),
                   ],
                 ),
               );
             },
-            child: Text('Show Alert Dialog'),
-          ),
-        ),
-        _buildDemoSection(
-          title: 'ReusableConfirmationDialog',
-          child: ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => ReusableConfirmationDialog(
-                  title: 'Confirm Action',
-                  message: 'Are you sure you want to proceed?',
-                  onConfirm: () {
-                    Navigator.pop(context);
-                  },
-                  onCancel: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              );
-            },
-            child: Text('Show Confirmation Dialog'),
+            child: Text('Show Custom Dialog'),
           ),
         ),
       ],
@@ -650,23 +645,26 @@ class FeedbackWidgetsDemo extends StatelessWidget {
           title: 'ReusableProgressIndicator',
           child: Column(
             children: [
-              ReusableProgressIndicator(size: 50),
+              ReusableProgressIndicator(circular: true, size: 50),
               SizedBox(height: 16),
-              ReusableProgressIndicator(size: 50, color: Colors.green),
+              ReusableProgressIndicator(circular: true, size: 50, color: Colors.green),
+              SizedBox(height: 16),
+              ReusableProgressIndicator(value: 0.7, height: 10),
             ],
           ),
         ),
         _buildDemoSection(
           title: 'ReusableEmptyState',
           child: ReusableEmptyState(
+            title: 'No items found',
+            subtitle: 'Try adding some items',
             icon: Icons.inbox,
-            message: 'No items found',
-            description: 'Try adding some items',
           ),
         ),
         _buildDemoSection(
           title: 'ReusableErrorView',
           child: ReusableErrorView(
+            title: 'Error',
             message: 'Something went wrong',
             onRetry: () {},
           ),
@@ -709,20 +707,40 @@ class LayoutWidgetsDemo extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       children: [
         _buildDemoSection(
-          title: 'ReusableStepperWidget',
-          child: ReusableStepperWidget(
+          title: 'ReusableStepper',
+          child: ReusableStepper(
             currentStep: 1,
-            steps: ['Step 1', 'Step 2', 'Step 3'],
+            steps: [
+              StepItem(title: 'Step 1', subtitle: 'First step'),
+              StepItem(title: 'Step 2', subtitle: 'Second step'),
+              StepItem(title: 'Step 3', subtitle: 'Third step'),
+            ],
           ),
         ),
         _buildDemoSection(
-          title: 'ReusableExpansionPanel',
-          child: ReusableExpansionPanel(
-            title: 'Expandable Panel',
-            children: [
-              ListTile(title: Text('Item 1')),
-              ListTile(title: Text('Item 2')),
-              ListTile(title: Text('Item 3')),
+          title: 'ReusableExpansionPanelList',
+          child: ReusableExpansionPanelList(
+            items: [
+              ReusableExpansionPanelItem(
+                header: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Text('Panel 1', style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                body: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Text('Content of panel 1'),
+                ),
+              ),
+              ReusableExpansionPanelItem(
+                header: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Text('Panel 2', style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                body: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Text('Content of panel 2'),
+                ),
+              ),
             ],
           ),
         ),
@@ -764,9 +782,9 @@ class MediaWidgetsDemo extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       children: [
         _buildDemoSection(
-          title: 'ReusableImage',
-          child: ReusableImage(
-            imageUrl: 'https://picsum.photos/300/200',
+          title: 'ReusableImage.network',
+          child: ReusableImage.network(
+            'https://picsum.photos/300/200',
             width: double.infinity,
             height: 200,
             fit: BoxFit.cover,
@@ -775,13 +793,13 @@ class MediaWidgetsDemo extends StatelessWidget {
         _buildDemoSection(
           title: 'ReusableAudioPlayer',
           child: ReusableAudioPlayer(
-            audioUrl: 'https://example.com/audio.mp3',
+            url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
           ),
         ),
         _buildDemoSection(
-          title: 'ReusableQRCode',
+          title: 'ReusableQRGenerator',
           child: Center(
-            child: ReusableQRCode(
+            child: ReusableQRGenerator(
               data: 'https://flutter.dev',
               size: 200,
             ),
@@ -830,12 +848,13 @@ class NavigationWidgetsDemo extends StatelessWidget {
             height: 60,
             color: Colors.blue,
             child: ReusableAppBar(
-              title: 'App Bar Demo',
+              titleText: 'App Bar Demo',
               leading: Icon(Icons.menu, color: Colors.white),
               actions: [
                 Icon(Icons.search, color: Colors.white),
                 SizedBox(width: 16),
                 Icon(Icons.more_vert, color: Colors.white),
+                SizedBox(width: 8),
               ],
             ),
           ),
@@ -845,9 +864,9 @@ class NavigationWidgetsDemo extends StatelessWidget {
           child: ReusableBottomNavBar(
             currentIndex: 0,
             items: [
-              BottomNavItem(icon: Icons.home, label: 'Home'),
-              BottomNavItem(icon: Icons.search, label: 'Search'),
-              BottomNavItem(icon: Icons.person, label: 'Profile'),
+              NavBarItem(icon: Icons.home, label: 'Home'),
+              NavBarItem(icon: Icons.search, label: 'Search'),
+              NavBarItem(icon: Icons.person, label: 'Profile'),
             ],
             onTap: (index) {},
           ),
